@@ -47,17 +47,43 @@
 }
 
 .step-indicator {
-  @apply h-1 bg-primary/30 rounded-full overflow-hidden;
+  @apply h-2 bg-primary/30 rounded-full overflow-hidden shadow-inner;
 }
 
 .step-indicator-progress {
-  @apply h-full bg-primary transition-all duration-300 ease-in-out;
+  @apply h-full bg-primary transition-all duration-500 ease-out shadow-lg;
 }
 
 .menu-card {
-  @apply relative overflow-hidden rounded-lg border border-primary/20 bg-card p-4 transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5;
+  @apply relative overflow-hidden rounded-lg border border-primary/20 bg-card p-6 transition-all duration-300 
+         hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5
+         backdrop-blur-sm backdrop-filter;
 }
 
 .menu-image {
-  @apply rounded-md object-cover w-20 h-20;
+  @apply rounded-lg object-cover w-24 h-24 shadow-md;
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hover-scale {
+  @apply transition-transform duration-200 hover:scale-105;
+}
+
+.pulse {
+  @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite];
 }

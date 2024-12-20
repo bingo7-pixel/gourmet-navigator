@@ -28,10 +28,42 @@ const menuItems: Item[] = [
     category: 'base'
   },
   {
+    id: 'brown-rice',
+    name: 'Brown Rice',
+    description: 'Wholesome brown rice',
+    price: 3.50,
+    image: '/lovable-uploads/f962e799-77e9-4d38-a6f1-9901fbc26ce2.png',
+    category: 'base'
+  },
+  {
+    id: 'quinoa',
+    name: 'Quinoa',
+    description: 'Protein-rich quinoa',
+    price: 4.00,
+    image: '/lovable-uploads/f962e799-77e9-4d38-a6f1-9901fbc26ce2.png',
+    category: 'base'
+  },
+  {
     id: 'chicken',
     name: 'Grilled Chicken',
     description: 'Herb-marinated chicken breast',
     price: 4.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'protein'
+  },
+  {
+    id: 'beef',
+    name: 'Teriyaki Beef',
+    description: 'Tender sliced beef in teriyaki sauce',
+    price: 5.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'protein'
+  },
+  {
+    id: 'tofu',
+    name: 'Crispy Tofu',
+    description: 'Pan-fried tofu cubes',
+    price: 4.00,
     image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
     category: 'protein'
   },
@@ -44,9 +76,41 @@ const menuItems: Item[] = [
     category: 'toppings'
   },
   {
+    id: 'corn',
+    name: 'Sweet Corn',
+    description: 'Fresh sweet corn kernels',
+    price: 1.00,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'toppings'
+  },
+  {
+    id: 'carrots',
+    name: 'Shredded Carrots',
+    description: 'Fresh shredded carrots',
+    price: 1.00,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'toppings'
+  },
+  {
     id: 'soy-sauce',
     name: 'Soy Sauce',
     description: 'Traditional soy sauce',
+    price: 0.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'sauce'
+  },
+  {
+    id: 'teriyaki',
+    name: 'Teriyaki Sauce',
+    description: 'Sweet and savory teriyaki',
+    price: 0.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'sauce'
+  },
+  {
+    id: 'spicy',
+    name: 'Spicy Mayo',
+    description: 'Creamy spicy mayo',
     price: 0.50,
     image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
     category: 'sauce'
