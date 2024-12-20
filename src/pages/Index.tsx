@@ -5,6 +5,7 @@ import { QuantityControl } from '@/components/QuantityControl';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import { useNavigate } from 'react-router-dom';
 
 const steps = ['Base', 'Protein', 'Toppings', 'Sauce', 'Review'];
 
@@ -34,7 +35,22 @@ const menuItems: Item[] = [
     image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
     category: 'protein'
   },
-  // Add more items here...
+  {
+    id: 'lettuce',
+    name: 'Fresh Lettuce',
+    description: 'Crispy iceberg lettuce',
+    price: 1.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'toppings'
+  },
+  {
+    id: 'soy-sauce',
+    name: 'Soy Sauce',
+    description: 'Traditional soy sauce',
+    price: 0.50,
+    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
+    category: 'sauce'
+  }
 ];
 
 const Index = () => {
@@ -43,6 +59,7 @@ const Index = () => {
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
   const [history, setHistory] = useState<Item[][]>([]);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const currentCategory = steps[currentStep].toLowerCase();
   const filteredItems = menuItems.filter(item => item.category === currentCategory);
@@ -68,6 +85,8 @@ const Index = () => {
   const handleBack = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
+    } else {
+      navigate('/');
     }
   };
 
@@ -98,7 +117,6 @@ const Index = () => {
               variant="ghost"
               size="icon"
               onClick={handleBack}
-              disabled={currentStep === 0}
             >
               <ArrowLeft className="h-4 w-4" />
             </Button>

@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import ColdMenu from "./pages/ColdMenu";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +15,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<ColdMenu />} />
+          <Route path="/hot-food" element={<Index />} />
+          <Route path="/cold-food" element={<Index />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
