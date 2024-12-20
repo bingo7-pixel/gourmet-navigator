@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useNavigate } from 'react-router-dom';
+import { OrderSummary } from '@/components/OrderSummary';
 
 const steps = ['Base', 'Protein', 'Toppings', 'Sauce', 'Review'];
 
@@ -16,104 +17,122 @@ interface Item {
   price: number;
   image: string;
   category: string;
+  nutrition?: {
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+  };
 }
 
 const menuItems: Item[] = [
   {
     id: 'white-rice',
     name: 'White Rice',
-    description: 'Steamed jasmine rice',
+    description: 'Premium jasmine rice, perfectly steamed',
     price: 3.00,
-    image: '/lovable-uploads/f962e799-77e9-4d38-a6f1-9901fbc26ce2.png',
-    category: 'base'
+    image: 'https://images.unsplash.com/photo-1516684732162-798a0062be99',
+    category: 'base',
+    nutrition: { calories: 130, protein: 2.7, carbs: 28, fat: 0.3 }
   },
   {
     id: 'brown-rice',
     name: 'Brown Rice',
-    description: 'Wholesome brown rice',
+    description: 'Wholesome brown rice rich in fiber',
     price: 3.50,
-    image: '/lovable-uploads/f962e799-77e9-4d38-a6f1-9901fbc26ce2.png',
-    category: 'base'
+    image: 'https://images.unsplash.com/photo-1539755530862-00f623c00f52',
+    category: 'base',
+    nutrition: { calories: 150, protein: 3.5, carbs: 32, fat: 1.2 }
   },
   {
     id: 'quinoa',
     name: 'Quinoa',
-    description: 'Protein-rich quinoa',
+    description: 'Ancient grain packed with protein',
     price: 4.00,
-    image: '/lovable-uploads/f962e799-77e9-4d38-a6f1-9901fbc26ce2.png',
-    category: 'base'
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c',
+    category: 'base',
+    nutrition: { calories: 120, protein: 4.4, carbs: 21, fat: 1.9 }
   },
   {
     id: 'chicken',
     name: 'Grilled Chicken',
-    description: 'Herb-marinated chicken breast',
+    description: 'Tender chicken breast marinated in herbs',
     price: 4.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'protein'
+    image: 'https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8',
+    category: 'protein',
+    nutrition: { calories: 165, protein: 31, carbs: 0, fat: 3.6 }
   },
   {
     id: 'beef',
     name: 'Teriyaki Beef',
-    description: 'Tender sliced beef in teriyaki sauce',
+    description: 'Premium sliced beef in house teriyaki sauce',
     price: 5.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'protein'
+    image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143',
+    category: 'protein',
+    nutrition: { calories: 250, protein: 26, carbs: 8, fat: 13 }
   },
   {
     id: 'tofu',
     name: 'Crispy Tofu',
-    description: 'Pan-fried tofu cubes',
+    description: 'Organic tofu, crispy outside and silky inside',
     price: 4.00,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'protein'
+    image: 'https://images.unsplash.com/photo-1546069901-eacb567c5fdd',
+    category: 'protein',
+    nutrition: { calories: 120, protein: 12, carbs: 3.5, fat: 6 }
   },
   {
-    id: 'lettuce',
-    name: 'Fresh Lettuce',
-    description: 'Crispy iceberg lettuce',
-    price: 1.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'toppings'
+    id: 'avocado',
+    name: 'Fresh Avocado',
+    description: 'Ripe avocado slices',
+    price: 2.00,
+    image: 'https://images.unsplash.com/photo-1601039641847-7857b994d704',
+    category: 'toppings',
+    nutrition: { calories: 80, protein: 1, carbs: 4, fat: 7 }
   },
   {
     id: 'corn',
-    name: 'Sweet Corn',
-    description: 'Fresh sweet corn kernels',
+    name: 'Roasted Corn',
+    description: 'Sweet corn kernels with light seasoning',
     price: 1.00,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'toppings'
+    image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076',
+    category: 'toppings',
+    nutrition: { calories: 85, protein: 3, carbs: 19, fat: 1 }
   },
   {
-    id: 'carrots',
-    name: 'Shredded Carrots',
-    description: 'Fresh shredded carrots',
-    price: 1.00,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'toppings'
+    id: 'kimchi',
+    name: 'Kimchi',
+    description: 'Traditional Korean fermented vegetables',
+    price: 1.50,
+    image: 'https://images.unsplash.com/photo-1583224874284-0c50a21a2fb2',
+    category: 'toppings',
+    nutrition: { calories: 25, protein: 1, carbs: 4, fat: 0 }
   },
   {
     id: 'soy-sauce',
-    name: 'Soy Sauce',
-    description: 'Traditional soy sauce',
+    name: 'Premium Soy Sauce',
+    description: 'Aged Japanese soy sauce',
     price: 0.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'sauce'
+    image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707',
+    category: 'sauce',
+    nutrition: { calories: 10, protein: 1, carbs: 1, fat: 0 }
   },
   {
-    id: 'teriyaki',
-    name: 'Teriyaki Sauce',
-    description: 'Sweet and savory teriyaki',
-    price: 0.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'sauce'
+    id: 'sesame',
+    name: 'Sesame Dressing',
+    description: 'Creamy sesame dressing',
+    price: 0.75,
+    image: 'https://images.unsplash.com/photo-1472476443507-c7a5948772fc',
+    category: 'sauce',
+    nutrition: { calories: 90, protein: 1, carbs: 2, fat: 9 }
   },
   {
-    id: 'spicy',
-    name: 'Spicy Mayo',
-    description: 'Creamy spicy mayo',
+    id: 'sriracha',
+    name: 'Sriracha Sauce',
+    description: 'Spicy sriracha sauce',
     price: 0.50,
-    image: '/lovable-uploads/299527cc-f7e5-4ff6-a27f-c790af21ee31.png',
-    category: 'sauce'
+    image: 'https://images.unsplash.com/photo-1607098665874-fd193397547b',
+    category: 'sauce',
+    nutrition: { calories: 15, protein: 0, carbs: 3, fat: 0 }
   }
 ];
 
@@ -202,29 +221,11 @@ const Index = () => {
 
         <div className="space-y-4">
           {currentStep === steps.length - 1 ? (
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-primary">Order Summary</h2>
-              {selectedItems.map((item) => (
-                <MenuItem
-                  key={item.id}
-                  {...item}
-                  onClick={() => {}}
-                  selected
-                />
-              ))}
-              <div className="mt-6 p-4 bg-card rounded-lg">
-                <div className="flex justify-between text-lg font-semibold mb-4">
-                  <span>Total</span>
-                  <span className="text-primary">${calculateTotal().toFixed(2)}</span>
-                </div>
-                <Button className="w-full" onClick={() => toast({
-                  title: "Order placed!",
-                  description: "Your order has been successfully placed.",
-                })}>
-                  Place Order
-                </Button>
-              </div>
-            </div>
+            <OrderSummary 
+              selectedItems={selectedItems}
+              quantity={quantity}
+              calculateTotal={calculateTotal}
+            />
           ) : (
             filteredItems.map((item) => (
               <MenuItem
